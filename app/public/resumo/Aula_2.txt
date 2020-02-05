@@ -1,0 +1,13 @@
+Aula 2
+
+Na pasta do projeto -->: Portfolio-javascript-dropbox-clone verifique se na sua máquina 
+
+se voçê já tenha instalado o express-generator através do command -->: npm express-generaotor.
+
+Em seguida:
+
+1.1 execute: express --ejs nome da pasta -->: app
+
+1.2 acesse a pasta app e instale as dependências do express com :
+
+npm install

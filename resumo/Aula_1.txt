@@ -1,0 +1,12 @@
+    AULA 1
+
+Na maioria das linguagens de programaçaõ o banco de dados normalmente está do lado do servidor. 
+Portanto, a linguagem de programação conversa com o servidor web, na imagem da arquitetura dropbox clone
+o banco de dados está do lado do navegador não está errado. O firebase por sua vez é um banco de dados
+ incrivel que permite não só ter uma base de dados na nuvem, mas tmbém dispõe de armazenamento e cloud function.
+ O firebase conversa direto tanto com o android, IOS, Unity 3D e também com javascript.
+ Então com com o javascript no lado do cliente eu posso conectar diretamente no banco de dados sem ter que 
+ passar pelo servidor aquela arquitetura básica que a gente conhece, embora seja, possível também. Com o firebase 
+ as aplicações acontecem em tempo real, ou seja, em realtime. Então se eu tiver algo que tem que acontecer em vários
+ pontos da minha aplicação ao mesmo tempo, sem que niguém tem que dar um refresh na tela e sem que ninguém tenha que ficar
+ esperando.

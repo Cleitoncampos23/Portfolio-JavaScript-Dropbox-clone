@@ -1,0 +1,37 @@
+Aula 3 
+
+
+Criar pasta src dentro da pasta public.
+Criar pasta controllers dentro da pasta src.
+Criar arquivo index.js dentro da pasta src pois este vai ser o arquivo de entrada.
+Dentro da pasta controllers deverá ser criado o arquivo:
+
+dropBoxControllers.js
+
+class dropboxControllers {
+
+    constructor() {
+
+        this.btnSendFile = document.querySelector('#btn-send-file');
+        this.inputFileEl = document.querySelector('#files');
+        this.snacmodalEl = document.querySelector('#react-snackbar-root');
+        this.iniEvents();
+    }
+
+    iniEvents() {
+
+        this.btnSendFile.addEventListener('click', event => {
+
+
+            this.inputFileEl.click();
+            console.log(event.target.file);
+
+        });
+
+        this.inputFileEl.addEventListener('change', event => {
+
+            this.snacmodalEl.style.display = 'block';
+
+        });
+    }
+}

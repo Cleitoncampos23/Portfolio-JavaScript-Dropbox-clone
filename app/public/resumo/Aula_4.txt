@@ -1,35 +1,11 @@
-class dropboxControllers {
-
-    constructor() {
-
-        this.btnSendFile = document.querySelector('#btn-send-file');
-        this.inputFileEl = document.querySelector('#files');
-        this.snacmodalEl = document.querySelector('#react-snackbar-root');
-        this.iniEvents();
-    }
-
-    iniEvents() {
-
-        this.btnSendFile.addEventListener('click', event => {
-
-            // com esse método eu disparo o evento do click para
-            //abrir a janela do windons
-            //console.log(event.target.files);
-            this.inputFileEl.click();
-
-
-        });
-
-        this.inputFileEl.addEventListener('change', event => {
-            // esse método informa o processo de uopload do arquivo 
-            this.uploadTask(event.target.files);
-            this.snacmodalEl.style.display = 'block';
-            //snacmodalEl exibe o modal oculto via css
-        });
-
-    }
-
-    uploadTask(files) {
+enviando arquivos usando ajax e Promise.all
+Nessa aula nós vamos fazer os multiplos haploides com ajax e também um recurso interresante chamado
+Promise.all. Uma promise é basicamente o seguinte: Eu tento executar um processo assincrono, ou seja, enquanto
+ele está fazendo eu posso fazer outra coisa, e esse  processo pode ter dois resultados: Ele pode ter o resultado que 
+deu certo a promessa que ele tentou fazer, e pode ter o problema e ele simplesmente rejeitou e então se deu 
+certo resolve se deu errado rejeita.
+ 
+ uploadTask(files) {
 
         let promises = []; // nesse array cada arquivo vai ter uma promessa
 
@@ -71,5 +47,3 @@ class dropboxControllers {
         return Promise.all(promises);
     }
 
-
-}

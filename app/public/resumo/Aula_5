@@ -1,0 +1,29 @@
+Recebendo arquivos no nodeJS com o formnidable
+
+Na aula anterior nós vimos como a gente seleciona multiplos arquivos. Chegou a hora da gente receber esses
+arquivos do lado do servidor, com o node e o express que vão receber os arquivos. 
+acesse a pasta routes dentro da pasta app e adicione o seguinte rota:
+
+ primeiro instale no seu pack.json:
+
+ npm install formidable --save
+ em seguida na pasta routes dentro da pasta app adicione a seguinte rota:
+
+ router.post('upload', (req, res)=>{
+
+     let form = new formidable.IncomingForm({
+
+         uploadDir: './upload',
+         keepExtensions:true
+
+     });
+
+     form.parse(req, (err, fields, files)=>{
+
+         res.json({
+
+             files
+
+         });
+     });
+ })

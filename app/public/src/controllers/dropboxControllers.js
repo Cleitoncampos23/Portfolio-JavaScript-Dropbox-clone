@@ -32,7 +32,7 @@ class dropboxControllers {
     uploadTask(files) {
 
         let promises = []; // nesse array cada arquivo vai ter uma promessa
-
+        // pra converter um array em uma coleção utiliza-se um oporador spreed com três pontinhos [...]
         [...files].forEach(file => {
 
             promises.push(new Promise((resolve, reject) => {
@@ -40,7 +40,8 @@ class dropboxControllers {
                 let ajax = new XMLHttpRequest();
 
                 ajax.open('POST', '/upload');
-
+                // como a gente sabe que ele terminou de enviar o ajax
+                // com ajax.onloads
                 ajax.onload = event => {
 
                     try {
@@ -52,12 +53,12 @@ class dropboxControllers {
                         reject(e);
                     }
 
-                };
+                }
 
                 ajax.onerror = event => {
 
                     reject(event);
-                };
+                }
 
                 let formData = new FormData(); // essa API FormData recebe chave e valor
 
@@ -70,6 +71,5 @@ class dropboxControllers {
         //promise all é ele que vai verificar todo mundo.
         return Promise.all(promises);
     }
-
 
 }

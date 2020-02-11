@@ -1,0 +1,47 @@
+ 
+O codigo acima mostra o envio de bytes do arquivo no console através da propriedade
+upload.progress.
+
+ATUALIZANDO VIEWS COM INFORMAÇÕES DE PROGRESS DE UPLOAD 
+
+Nessa aula vamos falar daquele modal que calcula a barra de progress. Quando a gente envia o arquivo
+também tem o total em porcentagem.
+Primeiro vamos trabalhar com o calculo de porcentagem, vamos trabalhar com a hora que começou
+o upload, os minutos e segundos. Isso durante o upload quando estiver acontecendo. Vamos comparar
+essa hora inicial com o tempo que eu tenho e o tempo total de bytes enviados. por exemplo: Se você
+tiver um arquivo de 2 bytes que foi enviados.Nesse caso, basta eu saber quantos bytes já foram enviados
+ai eu vou fazendo conta pra saber o tempo estimado restante. Traduzindo nós vamos fazer bastante conta Nessa
+aula.
+Vamos começar pegando as informações que o servidor retorna no evento do ajax ta certo.
+Dentro do bloco de codigo ajax, adicione um método onprogress.
+
+ajax.upload.onprogress = event =>{
+
+
+    console.log(event);
+
+}
+
+no console do google mostra o seguinte trecho:
+
+ProgressEvent {isTrusted: true, lengthComputable: true, loaded: 225878, total: 225878, type: "progress", …}
+
+mostra o loaded e o total. São dois atributos.
+
+
+Vamos criar um método para justamente trabalhar com o arquivo, com o evento, segue a baixo o trecho de codigo:
+
+ajax.upload.onprogress = event =>{
+
+        this.uploadProgress(event, file);
+}
+
+uploadProgress(event, file){
+
+    let loaded = event.loaded;
+    let total  = event.total;
+    let porcent =  parseInt((loaded / total) * 100);
+    this.progressBarEl.style.width = `${porcent} %`;
+
+}
+

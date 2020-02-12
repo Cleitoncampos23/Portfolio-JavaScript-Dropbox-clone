@@ -12,8 +12,7 @@ class dropboxControllers {
         this.iniEvents();
     }
 
-    conectFirebase(){
-
+    conectFirebase() {
         var firebaseConfig = {
             apiKey: "AIzaSyCPt4cXcOK6i0EdG5fE90lXFXUfICkKIZg",
             authDomain: "dropbox-clone-javascript-60014.firebaseapp.com",
@@ -23,11 +22,10 @@ class dropboxControllers {
             messagingSenderId: "357255991787",
             appId: "1:357255991787:web:da22161e1f180e092cc9ae",
             measurementId: "G-55PH8V2QRT"
-          };
-
-         
-            firebase.initializeApp(firebaseConfig);
-            firebase.analytics();
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
     }
 
     iniEvents() {
@@ -54,7 +52,7 @@ class dropboxControllers {
 
     }
 
-    modalShow(show = true){
+    modalShow(show = true) {
 
         this.snacmodalEl.style.display = (show) ? 'block' : 'none';
     }
@@ -91,12 +89,12 @@ class dropboxControllers {
                     reject(event);
                 }
 
-                ajax.upload.onprogress = event =>{
+                ajax.upload.onprogress = event => {
 
                     this.uploadProgress(event, file);
                 }
 
-               
+
                 let formData = new FormData(); // essa API FormData recebe chave e valor
 
                 formData.append('input-file', file);
@@ -112,12 +110,12 @@ class dropboxControllers {
         return Promise.all(promises);
     }
 
-    uploadProgress(event, file){
+    uploadProgress(event, file) {
 
-        let timeSpent = Date.now() -  this.startUploadTime;
+        let timeSpent = Date.now() - this.startUploadTime;
         let loaded = event.loaded;
-        let total  = event.total;
-        let porcent =  parseInt((loaded / total) * 100);
+        let total = event.total;
+        let porcent = parseInt((loaded / total) * 100);
         let timeleft = ((100 - porcent) * timeSpent) / porcent;
 
         this.progressBarEl.style.width = `${porcent}%`;
@@ -137,7 +135,7 @@ class dropboxControllers {
         // esse método é invocado dentro da função de calback ajax.upload.onprogress
     }
 
-    formaTimeToHuman(duration){
+    formaTimeToHuman(duration) {
 
         // Esse método serve para formatar os segundos
         // os minutos e hora.
@@ -145,15 +143,15 @@ class dropboxControllers {
         let minutes = parseInt((duration / (1000 / 60)) % 60);
         let hours = parseInt((duration / (1000 / 60 * 60)) % 24);
 
-        if(hours > 0){
+        if (hours > 0) {
 
             return `${hours} horas, ${minutes} minutos e ${seconds} segundos`;
         }
-        if(minutes > 0){
+        if (minutes > 0) {
 
             return `${minutes} minutos e ${seconds} segundos`;
         }
-        if(seconds > 0){
+        if (seconds > 0) {
 
             return ` ${seconds} segundos`;
         }
@@ -161,9 +159,9 @@ class dropboxControllers {
         return '';
     }
 
-    getFileIconViews(file){
+    getFileIconViews(file) {
 
-        switch(file.type){
+        switch (file.type) {
 
             case 'folder':
                 return `
@@ -178,10 +176,10 @@ class dropboxControllers {
                         <div class="name text-center">Meus Documentos</div>
                 
                 `;
-                    break;
+                break;
 
-                case 'application/pdf':
-                     return `
+            case 'application/pdf':
+                return `
                      
                      <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="160px" height="160px" viewBox="0 0 160 160" enable-background="new 0 0 160 160" xml:space="preserve">
                          <filter height="102%" width="101.4%" id="mc-content-unknown-large-a" filterUnits="objectBoundingBox" y="-.5%" x="-.7%">
@@ -218,12 +216,12 @@ class dropboxControllers {
                      <div class="name text-center">PDF</div>
                  
                      
-                     ` ;
-                    break;
+                     `;
+                break;
 
-                case 'audio/mp3':
-                case 'audio/ogg':
-                    return `
+            case 'audio/mp3':
+            case 'audio/ogg':
+                return `
                     
                     
                     <svg width="160" height="160" viewBox="0 0 160 160" class="mc-icon-template-content tile__preview tile__preview--icon">
@@ -248,8 +246,8 @@ class dropboxControllers {
                     `;
                 break;
 
-                case 'video/mp4':
-                case 'video/quicktime':
+            case 'video/mp4':
+            case 'video/quicktime':
 
                 return `
                 
@@ -279,7 +277,7 @@ class dropboxControllers {
             case 'image/jpg':
             case 'image/png':
             case 'image/gif':
-                    return `
+                return `
                     <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="160px" height="160px" viewBox="0 0 160 160" enable-background="new 0 0 160 160" xml:space="preserve">
                         <filter height="102%" width="101.4%" id="mc-content-unknown-large-a" filterUnits="objectBoundingBox" y="-.5%" x="-.7%">
                             <feOffset result="shadowOffsetOuter1" in="SourceAlpha" dy="1"></feOffset>
@@ -320,10 +318,10 @@ class dropboxControllers {
                     </svg>
                     <div class="name text-center">Imagem</div>
                 `;
-                break; 
-                
-                default:
-                    return `
+                break;
+
+            default:
+                return `
                     
                     
                     <svg width="160" height="160" viewBox="0 0 160 160" class="mc-icon-template-content tile__preview tile__preview--icon">
@@ -346,12 +344,12 @@ class dropboxControllers {
                 
                     `;
 
-                    break;
+                break;
         }
 
     }
 
-    getFileView(file){
+    getFileView(file) {
 
         return `
             <li>

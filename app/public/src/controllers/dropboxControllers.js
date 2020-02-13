@@ -420,8 +420,51 @@ class dropboxControllers {
 
         li.addEventListener('click', e => {
 
-            li.classList.toggle('selected');
 
+            if (e.shiftKey) {
+
+                let firstLi = this.liFilesEl.querySelector('.selected');
+
+                if (firstLi) {
+
+                    let indexStart;
+                    let indexEnd;
+                    let lis = li.parentElement.childNodes;
+
+                    lis.forEach((el, index) => {
+
+                        if (firstLi === el) indexStart = index;
+                        if (li === el) indexEnd = index;
+
+                    });
+
+                    let index = [indexStart, indexEnd].sort();
+
+                    lis.forEach((el, i) => {
+
+                        if (i >= index[0] && i <= index[1]) {
+
+                            el.classList.add('selected');
+                        }
+                    });
+
+                    return true;
+                }
+            }
+
+            if (!e.ctrlKey) {
+                // se a pessoa clicou no li e não estava segurando o control
+                // significa que a gente vai procurar todos os li selecionados
+                //
+
+                this.liFilesEl.querySelectorAll('li.selected').forEach(el => {
+
+                    el.classList.remove('selected'); // nesse commando vai remover um por um.
+
+                });
+            }
+            li.classList.toggle('selected');
         });
+
     }
 }

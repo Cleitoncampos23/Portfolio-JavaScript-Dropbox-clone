@@ -1,0 +1,12 @@
+initEventsLi(li) {
+
+        li.addEventListener('click', e => {
+
+            li.classList.toggle('selected');
+
+        });
+
+
+Esse métdo serve para selecionar os elementos com o javascript
+
+com o elemento classList.toggle(selected) seleciona-se.

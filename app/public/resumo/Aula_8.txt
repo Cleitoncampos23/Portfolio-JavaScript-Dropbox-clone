@@ -1,0 +1,24 @@
+LISTANDO DADOS DO FIREBASE REALTIME DATABASE
+
+    COMO LISTAR OS DADOS DO FIREBASE
+
+     this.listFilesEl = document.querySelector('#list-of-files-and-directories');
+    readFiler() {
+
+        this.getFirebaseRef().on('value', snapshot => {
+
+            this.listFilesEl.innerHTML = '';
+
+            snapshot.forEach(snapshotItem => {
+
+                let key = snapshotItem.key;
+
+                let data = snapshotItem.val();
+
+                //console.log(key, data);
+
+                this.listFilesEl.appendChild(this.getFileView(data, key));
+            });
+
+        });
+    }

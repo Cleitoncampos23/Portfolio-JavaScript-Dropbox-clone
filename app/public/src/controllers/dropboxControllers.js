@@ -13,6 +13,7 @@ class dropboxControllers {
     }
 
     conectFirebase() {
+
         var firebaseConfig = {
             apiKey: "AIzaSyCPt4cXcOK6i0EdG5fE90lXFXUfICkKIZg",
             authDomain: "dropbox-clone-javascript-60014.firebaseapp.com",
@@ -41,16 +42,45 @@ class dropboxControllers {
         });
 
         this.inputFileEl.addEventListener('change', event => {
+            this.btnSendFile.disabled = true;
             // esse método informa o processo de uopload do arquivo 
-            this.uploadTask(event.target.files);
+            this.uploadTask(event.target.files).then(responses => {
+
+                responses.forEach(resp => {
+
+                    //console.log(resp.files['input-file']);
+
+                    this.getFirebaseRef().push().set(resp.files['input-file']);
+                });
+
+                this.uploadComplete();
+                //this.modalShow(false);
+            }).catch(err => {
+
+                this.uploadComplete();
+                console.error(err);
+
+            });
 
             this.modalShow();
             //snacmodalEl exibe o modal oculto via css
 
-            this.inputFileEl.value = '';
+
         });
 
     }
+    uploadComplete() {
+
+        this.modalShow(false);
+        this.inputFileEl.value = '';
+        this.btnSendFile.disabled = false;
+
+    }
+    getFirebaseRef() {
+
+        return firebase.database().ref('files');
+    }
+
 
     modalShow(show = true) {
 
@@ -71,7 +101,7 @@ class dropboxControllers {
                 // com ajax.onloads
                 ajax.onload = event => {
 
-                    this.modalShow(false);
+
                     try {
                         // resposta do nosso servidor que vai estar dentro de ajax
                         resolve(JSON.parse(ajax.responseText));
@@ -85,7 +115,7 @@ class dropboxControllers {
 
                 ajax.onerror = event => {
 
-                    this.modalShow(false);
+
                     reject(event);
                 }
 

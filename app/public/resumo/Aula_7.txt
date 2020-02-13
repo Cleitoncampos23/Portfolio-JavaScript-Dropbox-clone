@@ -1,0 +1,43 @@
+ADICIONAR O FIREBASE A SUA APLICAÇÃO WEB
+
+1 Logue primeiro na sua conta do google. Em seguinda acesse o site do firebase.google.com
+2 Em seguida acesse clicando no bottão ir para o console do firebase.
+3 Aparecerá um botão dizendo: criar novo projeto. Clique nesse botão, dê um nome a esse projeto.
+atribua a  localidade para Brasil. clique no menu do lado, clique em database,vai abrir uma janela, clique em iniciar 
+modo de teste, clique em ativar.
+Em seguida já vai mostrar a base de dados criada.
+Para importar os dados da aplicação ao firebase, basta ir em overview e clicar no botão adicionar o firebase
+ao seu projeto, aplicativo web.
+Copie e cole os script no seu site.
+adicionar os seguinte script a sua aplicação:
+
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-database.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-analytics.js" defer></script>!-->
+    
+    var firebaseConfig = {
+            apiKey: "AIzaSyCPt4cXcOK6i0EdG5fE90lXFXUfICkKIZg",
+            authDomain: "dropbox-clone-javascript-60014.firebaseapp.com",
+            databaseURL: "https://dropbox-clone-javascript-60014.firebaseio.com",
+            projectId: "dropbox-clone-javascript-60014",
+            storageBucket: "dropbox-clone-javascript-60014.appspot.com",
+            messagingSenderId: "357255991787",
+            appId: "1:357255991787:web:da22161e1f180e092cc9ae",
+            measurementId: "G-55PH8V2QRT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+
+        CONEQUITANDO SEU CODIGO AO FIREBASE
+
+        getFirebaseRef() {
+
+        return firebase.database().ref('files');
+    }
+
+
+         console.log(resp.files['input-file']);
+
+                    this.getFirebaseRef().push().set(resp.files['input-file']);

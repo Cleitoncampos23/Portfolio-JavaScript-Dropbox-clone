@@ -1,7 +1,7 @@
 class dropboxControllers {
 
     constructor() {
-
+        this.onselectonchange = new Event('onselectonchange'); // aqui foi criado um elemento que
         this.btnSendFile = document.querySelector('#btn-send-file');
         this.inputFileEl = document.querySelector('#files');
         this.snacmodalEl = document.querySelector('#react-snackbar-root');
@@ -9,6 +9,7 @@ class dropboxControllers {
         this.nameFileEl = this.snacmodalEl.querySelector('.filename');
         this.timeleft = this.snacmodalEl.querySelector('.timeleft');
         this.liFilesEl = document.querySelector('#list-of-files-and-directories');
+
         this.conectFirebase();
         this.iniEvents();
         this.readFiler();
@@ -35,6 +36,10 @@ class dropboxControllers {
 
         this.btnSendFile.addEventListener('click', event => {
 
+            this.liFilesEl.addEventListener('selectonchange', e => {
+
+                console.log('selectonchange');
+            });
             // com esse método eu disparo o evento do click para
             //abrir a janela do windons
             //console.log(event.target.files);
@@ -420,6 +425,8 @@ class dropboxControllers {
 
         li.addEventListener('click', e => {
 
+
+            this.liFilesEl.dispatchEvent(this.onselectonchange); // não existe 
 
             if (e.shiftKey) {
 
